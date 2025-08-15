@@ -6,8 +6,34 @@ document.addEventListener('DOMContentLoaded', () => {
     const newQuoteBtn = document.getElementById('newQuote');
     const dynamicFormContainer = document.querySelector('.dynamic-form-container');
 
+    let newQuoteTextInput;
+    let newQuoteCategoryInput;
+    let addQuoteButton;
+
     let quotes = [];
+    loadQuotes();
     //[{text: "Long live the clan", category: "shadomado"}]
+
+    //function to load quotes
+    function loadQuotes() {
+
+        const loadedQuotes = localStorage.getItem('quotes');
+        quotes = JSON.parse(loadedQuotes)
+    }
+
+    //add a function for saving quotes
+    function saveQuotes() {
+        try {
+
+            localStorage.setItem('savedQuotes', JSON.stringify(quotes))
+            console.log('Quotes saved successfuly to local storage')
+
+        } catch (e) {
+            console.error('Error saving quotes to local storage', e);
+            alert('Failed to save quotes')
+
+        }
+    }
 
 
     function showRandomQuote() {
@@ -22,6 +48,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         quoteDisplay.innerHTML = `<p>${randomQuote.text}</p>
         <p>${randomQuote.category}</p>`
+
+
+        //implement session storage
+        sessionStorage.setItem('lastViewedQuote', JSON.stringify(randomQuote))
     }
 
     function addQuote(){
@@ -44,6 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         quotes.push(newQuoteObject);
+        saveQuotes();
     }
 
     function createAddQuoteForm() {
