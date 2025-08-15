@@ -5,6 +5,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const quoteDisplay = document.getElementById('quoteDisplay');
     const newQuoteBtn = document.getElementById('newQuote');
     const dynamicFormContainer = document.querySelector('.dynamic-form-container');
+    const importBtn = document.getElementById('importBtn');
+    const exportBtn = document.getElementById('exportBtn');
 
     let newQuoteTextInput;
     let newQuoteCategoryInput;
@@ -105,6 +107,32 @@ document.addEventListener('DOMContentLoaded', () => {
         dynamicFormContainer.append(addQuoteButton);
     }
 
+    function exportToJson(event) {
+        const dataStr = JSON.stringify(quotes, null, 2); //access quotes
+        const blob = new Blob([dataStr], { type: "application/json" }); //json file
+        const url = URL.createObjectURL(blob); //temp url
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "quotes.json";
+        a.click();
+        URL.revokeObjectURL(url);
+}
+
+
+    function importFromJsonFile(event) {
+        const fileReader = new FileReader();
+        fileReader.onload = function(event) {
+        const importedQuotes = JSON.parse(event.target.result);
+        quotes.push(...importedQuotes);
+        saveQuotes();
+        alert('Quotes imported successfully!');
+        };
+        fileReader.readAsText(event.target.files[0]);
+  }
+
+
+
+
 loadQuotes();
 createAddQuoteForm();
 newQuoteBtn.addEventListener('click', showRandomQuote);
@@ -119,5 +147,6 @@ addQuoteButton.addEventListener('click', addQuote);
                 addQuote();
             }
         });
-
+importBtn.addEventListener('click', importFromJsonFile);
+exportBtn.addEventListener('click', exportToJson)
 })
