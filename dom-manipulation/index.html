@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
     <title>Dynamic Quote Generator</title>
   </head>
   <body>
@@ -11,6 +12,18 @@
     <button id="newQuote">Show New Quote</button>
 
     <div id="add-quote-form-placeholder" class="dynamic-form-container"></div>
+
+    <div>
+      <h2>Manage your data</h2>
+      <input type="file" id="importFile" accept=".json" onchange="importFromJsonFile(event)" />
+      <button id ="importBtn">Import from JSON File</button>
+      <button id="exportBtn">Export to JSON File</button>
+    </div>
+
+
+
+
+    </div>
     <script src="script.js"></script>
   </body>
   </html>
