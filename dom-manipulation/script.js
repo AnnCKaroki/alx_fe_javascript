@@ -1,75 +1,61 @@
-/*Manage an array of quote objects where each quote has a text and a category
-Implement functions to display a random quote and to add new quotes
-showRandomQuote and createAddQuoteForm` respectively*/
-
 document.addEventListener('DOMContentLoaded', () => {
 
-    //get elements
+    //element references
+
     const quoteDisplay = document.getElementById('quoteDisplay');
+    const newQuoteBtn = document.getElementById('newQuote');
+    const dynamicFormContainer = document.querySelector('.dynamic-form-container');
 
-    const newQuote = document.getElementById('newQuote');
+    let quotes = [];
+    //[{text: "Long live the clan", category: "shadomado"}]
 
-    const addQuoteFormPlaceholder = document.getElementById('add-quote-form-placeholder');
-
-    let quotes = [{text: "Tis better to have loved and lost than never to have loved at all.", category: "love"},
-        {text: "By all means, marry. If you get a good wife, you'll become happy; if you get a bad one, you'll become a philosopher.", category:"witty"},
-        {text: "Opportunities don't happen, you create them.", category: "motivational"},
-        {text: "To be, or not to be, that is the question.", category: "deep"}
-    ]
-
-    let newQuoteTextInput;
-    let newQuoteCategoryInput;
-    let addQuoteButton;
 
     function showRandomQuote() {
 
-        quoteDisplay.innerHTML = '';
+        if (quotes.length === 0) {
+            quoteDisplay.textContent = 'No quotes. Create some!'
+            return;
+        }
 
-        let randomIndex = Math.floor(Math.random() * quotes.length)
+        const randomIndex = Math.floor(Math.random() * quotes.length);
+        const randomQuote = quotes[randomIndex]
 
-        let randomQuote = quotes[randomIndex]
-
-        quoteDisplay.innerHTML =`
-        <p class= "quote-text">${randomQuote.text}</p>
-        <p class="quote-category">${randomQuote.category}</p>`;
+        quoteDisplay.innerHTML = `<p>${randomQuote.text}</p>
+        <p>${randomQuote.category}</p>`
     }
 
-    function addQuote() {
-        const quoteText = newQuoteTextInput.value.trim();
+    function addQuote(){
 
+        //get input, add it, push to quotes
+
+        const quoteText = newQuoteTextInput.value.trim();
         const quoteCategory = newQuoteCategoryInput.value.trim();
 
+        //ensure it is not empty
+
         if (quoteText === '' || quoteCategory === '') {
-            alert('Please enter both a quote and category');
+            alert('Please enter both text and category')
             return;
         }
 
         const newQuoteObject = {
-        text: quoteText,
-        category: quoteCategory,
+            text: quoteText,
+            category: quoteCategory
+        }
+
+        quotes.push(newQuoteObject);
     }
-
-
-    quotes.push(newQuoteObject)
-
-    newQuoteTextInput = '';
-    newQuoteCategoryInput = '';
-
-    showRandomQuote();
-
-    console.log('Quote added: ', newQuoteObject)
-    }
-
 
     function createAddQuoteForm() {
-
+        //creating a form to accept quotes from the user
+        //heading, textInput, categoryInput - input,id,type,placeholder
+        //addButton are created dynamically
         const formHeading = document.createElement('h2');
-        formHeading.textContent = 'Add Your Own Quote';
-        addQuoteFormPlaceholder.appendChild(formHeading);
+        formHeading.textContent = 'Add a Quote';
 
-        //create elements dynamically
 
-        newQuoteTextInput = document.createElement('input'); // Assign to the outer-scoped variable
+        //elements creation
+        newQuoteTextInput = document.createElement('input');
         newQuoteTextInput.id = 'newQuoteText';
         newQuoteTextInput.type = 'text';
         newQuoteTextInput.placeholder = 'Enter a new quote';
@@ -85,28 +71,8 @@ document.addEventListener('DOMContentLoaded', () => {
         addQuoteButton.id = 'add-quote-btn';
         addQuoteButton.textContent = 'Add Quote';
         addQuoteFormPlaceholder.append(addQuoteButton);
-
-        //event listeners
-        addQuoteButton.addEventListener('click', addQuote)
-
-        newQuoteTextInput.addEventListener('keydown', (event) => {
-            if (event.key === 'Enter') {
-                addQuote();
-            }
-        });
-
-        newQuoteCategoryInput.addEventListener('keydown', (event) => {
-            if (event.key === 'Enter') {
-                addQuote();
-            }
-        });
-
     }
-
-    createAddQuoteForm();//setup the form
-
-    newQuote.addEventListener('click', showRandomQuote);
-
-    showRandomQuote(); //when page first loads
-
+showRandomQuote();
+addQuote();
+createAddQuoteForm();
 })
