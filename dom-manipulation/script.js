@@ -59,18 +59,18 @@ document.addEventListener('DOMContentLoaded', () => {
         newQuoteTextInput.id = 'newQuoteText';
         newQuoteTextInput.type = 'text';
         newQuoteTextInput.placeholder = 'Enter a new quote';
-        addQuoteFormPlaceholder.appendChild(newQuoteTextInput);
+        dynamicFormContainer.appendChild(newQuoteTextInput);
 
         newQuoteCategoryInput = document.createElement('input');
         newQuoteCategoryInput.id = 'newQuoteCategory';
         newQuoteCategoryInput.type = 'text';
         newQuoteCategoryInput.placeholder = 'Enter quote category';
-        addQuoteFormPlaceholder.appendChild(newQuoteCategoryInput);
+        dynamicFormContainer.appendChild(newQuoteCategoryInput);
 
         addQuoteButton = document.createElement('button');
         addQuoteButton.id = 'add-quote-btn';
         addQuoteButton.textContent = 'Add Quote';
-        addQuoteFormPlaceholder.append(addQuoteButton);
+        dynamicFormContainer.append(addQuoteButton);
     }
 showRandomQuote();
 addQuote();
