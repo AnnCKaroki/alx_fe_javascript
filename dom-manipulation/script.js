@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let addQuoteButton;
 
     let quotes = [];
-    loadQuotes();
+
     //[{text: "Long live the clan", category: "shadomado"}]
 
     //function to load quotes
@@ -83,6 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
         //addButton are created dynamically
         const formHeading = document.createElement('h2');
         formHeading.textContent = 'Add a Quote';
+        dynamicFormContainer.appendChild(formHeading)
 
 
         //elements creation
@@ -103,7 +104,20 @@ document.addEventListener('DOMContentLoaded', () => {
         addQuoteButton.textContent = 'Add Quote';
         dynamicFormContainer.append(addQuoteButton);
     }
-showRandomQuote();
-addQuote();
+
+loadQuotes();
 createAddQuoteForm();
+newQuoteBtn.addEventListener('click', showRandomQuote);
+addQuoteButton.addEventListener('click', addQuote);
+        newQuoteTextInput.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') {
+                addQuote();
+            }
+        });
+        newQuoteCategoryInput.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') {
+                addQuote();
+            }
+        });
+
 })
