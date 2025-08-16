@@ -1,0 +1,52 @@
+[
+  {
+    "id": "server-101",
+    "text": "The only true wisdom is in knowing you know nothing.",
+    "category": "Philosophy"
+  },
+  {
+    "id": "server-102",
+    "text": "The unexamined life is not worth living.",
+    "category": "Philosophy"
+  },
+  {
+    "id": "server-103",
+    "text": "Happiness is not something ready-made. It comes from your own actions.",
+    "category": "Happiness"
+  },
+  {
+    "id": "server-104",
+    "text": "It is better to be hated for what you are than to be loved for what you are not.",
+    "category": "Life"
+  },
+  {
+    "id": "server-105",
+    "text": "Be yourself; everyone else is already taken.",
+    "category": "Humor"
+  },
+  {
+    "id": "server-106",
+    "text": "Two things are infinite: the universe and human stupidity; and I'm not sure about the universe.",
+    "category": "Humor"
+  },
+  {
+    "id": "server-107",
+    "text": "The future belongs to those who believe in the beauty of their dreams.",
+    "category": "Inspiration"
+  },
+  {
+    "id": "server-108",
+    "text": "Success is not final, failure is not fatal: it is the courage to continue that counts.",
+    "category": "Motivation"
+  },
+  {
+    "id": "server-109",
+    "text": "The only way to do great work is to love what you do.",
+    "category": "Inspiration"
+  },
+  {
+    "id": "server-110",
+    "text": "Imagination is more important than knowledge.",
+    "category": "Creativity"
+  }
+]
