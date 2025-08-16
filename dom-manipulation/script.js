@@ -234,7 +234,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Simulates data syncing with a server
-    async function syncWithServer() {
+    async function syncQuotes() {
         displayNotification('Syncing with server...', 'info');
         try {
             const response = await fetch(SERVER_URL);
@@ -340,9 +340,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Start periodic server syncing and perform initial sync
     setInterval(syncWithServer, SYNC_INTERVAL_MS);
-    syncWithServer(); // Initial sync on load
+    syncQuotes(); // Initial sync on load
 
     // Perform initial display based on current filter (or all quotes)
     filterQuotes();
 
-}); 
+});
